@@ -1,0 +1,76 @@
+from aiogram.types import ReplyKeyboardMarkup , KeyboardButton
+
+start_button = ReplyKeyboardMarkup(
+    keyboard=[
+        [
+            KeyboardButton('Kurslar'),
+            KeyboardButton('Biz haqimizda')
+        ],
+        [
+             KeyboardButton('Contakt va location')
+        ]
+    ] ,
+    resize_keyboard=True
+)
+
+kurslar_button = ReplyKeyboardMarkup(
+    keyboard=[
+        [
+            KeyboardButton('Android'),
+            KeyboardButton('Programming')
+        ],
+        [
+            KeyboardButton('Back end'),
+            KeyboardButton('Data Science')
+        ],
+        [
+            KeyboardButton('SMM'),
+            KeyboardButton('3DsMax')
+        ],
+        [
+            KeyboardButton('⬅️ Orqaga')
+        ]
+    ] ,
+    resize_keyboard=True
+)
+
+qayt_button = ReplyKeyboardMarkup(
+    keyboard=[
+        [
+            KeyboardButton('Kursga yozilish:')
+            ],
+        [
+            KeyboardButton ('⬅️ Orqaga')
+            ]
+    ],
+    resize_keyboard=True
+)
+
+phone_button=ReplyKeyboardMarkup(
+    keyboard=[
+        [
+            KeyboardButton("Telefon raqam yuborish" , request_contact=True)
+        ],
+[
+            KeyboardButton ('⬅️ Orqaga')
+            ]
+    ],
+    resize_keyboard=True
+)
+
+manzil_button = ReplyKeyboardMarkup(
+    keyboard=[
+        [
+            KeyboardButton("Bizning manzil:" )
+        ]
+    ]
+)
+
+qaytar_button = ReplyKeyboardMarkup(
+    keyboard=[
+        [
+            KeyboardButton ('⬅️ Orqaga')
+            ]
+    ],
+    resize_keyboard=True
+)
