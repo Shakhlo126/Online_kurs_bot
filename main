@@ -1,0 +1,91 @@
+from aiogram import Bot, Dispatcher, executor
+from aiogram.types import Message
+from button import kurslar_button , start_button ,  qayt_button , phone_button , manzil_button , qaytar_button
+
+BOT_TOKEN = '6976447468:AAGBFMOUR2IqzZQNFr2SAR3K-U1FMCgjOHo'
+bot = Bot(token=BOT_TOKEN)
+dp = Dispatcher(bot)
+
+
+@dp.message_handler(commands='start')
+async def startfun(message: Message):
+    await message.reply(f"Assalomu alaykum {message.from_user.full_name} Botga xush kelibsiz!!! Qanday yordam bera olamiz?",reply_markup=start_button)
+
+
+@dp.message_handler(text='Kurslar')
+async def menyu(msg: Message):
+    rasm1 = open('img.png', 'rb')
+    cap ='Qaysi kurs haqida malumot xohlaysiz?'
+    await bot.send_photo(msg.chat.id,rasm1 , caption=cap,  reply_markup=kurslar_button)
+
+
+@dp.message_handler(text='Biz haqimizda')
+async def biz(msg: Message):
+    rasm2 = open('img_2.png' , 'rb')
+    cap2 ="Kurslarimiz haftada 3 marta 2 soat davom etadi.\nTo'lov kusrning darajasiga qarab belgilanadi."
+    vd1 = open('vd.mp4' , 'rb')
+    cap_vd = 'Ushbu video orqali bizdagi qulayliklarni bilib olishingiz mumkin'
+    await bot.send_photo(msg.chat.id,rasm2 ,caption=cap2 , reply_markup=qaytar_button)
+    await bot.send_video(msg.chat.id,vd1, caption=cap_vd , reply_markup=qaytar_button )
+
+
+@dp.message_handler(text='Android')
+async def andro(msg: Message):
+    rasm3 = open('img_1.png','rb')
+    cap3 = "Android kursi 8 oydan 12 oyga qadar o'qitiladi.\nUshbu dasturlash tilini o'rganishdan avval 'Java' dasturlash tilini o'rganishingizni maslahat beramiz!\nKurs narxi:1 400 000 som"
+    await bot.send_photo(msg.chat.id,rasm3, caption=cap3, reply_markup=qayt_button)
+
+@dp.message_handler(text='Programming')
+async def program(msg : Message):
+    rasm4 = open('img_3.png' , 'rb')
+    cap4="Ushbu dasturlash tili eng qiziq dasturlash tillaridan biri hisoblanadi.\nAyni damda yurtimizda ushbu turdagi programmistlarga ehtiyoj katta.\nUlarning asosiy vazifalari xalq uchun yangi dasturlar tuzish.\nBizning kursimizda bu kurs 1 yil mobaynida o'qitiadi\nKurs narxi:1 300 000 som"
+    await bot.send_photo(msg.chat.id,rasm4 , caption=cap4 , reply_markup=qayt_button)
+
+@dp.message_handler(text='Back end')
+async def back(msg:Message):
+    rasm5 = open('img_4.png' , 'rb')
+    cap5 ="Ushbu kursimiz 6 oydan 8 oyga qadar davom etadi.\n5 oy davomida amaliy mashg'ulotlar bo'lib o'tadi va 6-oy ishga tayyorlov bo'lib o'tadi .\nKusr narxi:1 400 000 som"
+    await bot.send_photo(msg.chat.id ,rasm5 , caption=cap5 , reply_markup=qayt_button)
+
+@dp.message_handler(text='Data Science')
+async def data(msg:Message):
+    rasm6=open('img_5.png' , 'rb')
+    cap6 ="Ushbu kursimiz eng murakkab dasturlash tillaridan biri sanaladi.\nKurs qolgan kurslarga nisbatan ko'proq sabr va ishtiyoq talab etadi.\nKurs davomiyligi o'rtacha 1 yil.\nKurs narxi:1 550 000 som"
+    await bot.send_photo(msg.chat.id , rasm6 , caption=cap6 ,  reply_markup=qayt_button)
+
+
+@dp.message_handler(text='SMM')
+async def smm(msg:Message):
+    rasm7= open('img_6.png' , 'rb')
+    cap7="SMM-To'liq nomi 'Social media marketing'.\n Ushbu sohada ijtimoiy tarmoqlar orqali savdo-sotiq ishlari amalga oshirish maqsadida qo'llaniladi.\nKurs davomiyligi 6 oydan 8 oygacha.\nKurs narxi: 1 300 000 som"
+    await bot.send_photo(msg.chat.id , rasm7 , caption=cap7 ,  reply_markup=qayt_button)
+
+@dp.message_handler(text='3DsMax')
+async def dmx(msg:Message):
+    rasm8=open('img_7.png' , 'rb')
+    cap8 = 'Ushbu kurs qolgan kurslarga qarganda juda ham qiziqarli kurs sanaladi.\n3DsMax animatsiya va uch oʻlchamli grafika yaratuvchi va tahrir qiluvchi toʻliq funksiyali professional dastur sanaladi.\Kurs davomiyligi 6 oydan 8 oygacha.\nKurs narxi:1 200 000 som'
+    await bot.send_photo(msg.chat.id , rasm8 , caption=cap8 , reply_markup=qayt_button)
+
+@dp.message_handler(text='Kursga yozilish:')
+async def yoz(msg:Message):
+    await msg.reply("Ism va familiyangizni kiriting:")
+    await msg.reply("Telefon raqamingizni qoldiring:", reply_markup=phone_button )
+
+@dp.message_handler(content_types='contact')
+async def kont(msg:Message):
+    await msg.reply("E'tiboringiz uchun rahmat tez orada adminlarimiz siz bilan aloqaga chiqishadi)")
+
+@dp.message_handler(text='Contakt va location')
+async def kontakt(msg:Message):
+    text1="Yordam kerak bo'lsa ushbu raqam bilan bog'laning :\nhttps://t.me/Shakhlo236"
+    await msg.reply(text1)
+    await msg.answer('Bizning manzil:\nрффhttps://maps.google.com/maps?q=41.323464,69.363044&ll=41.323464,69.363044&z=16' )
+
+
+@dp.message_handler(text='⬅️ Orqaga')
+async def ortga(msg: Message):
+    await msg.reply(f"Assalomu alaykum {msg.from_user.full_name} Botga xush kelibsiz!!!", reply_markup=start_button)
+
+
+if __name__ == '__main__':
+    executor.start_polling(dp, skip_updates=True)
